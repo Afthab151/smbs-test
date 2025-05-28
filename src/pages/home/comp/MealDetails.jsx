@@ -13,7 +13,6 @@ const MealDetails = ({
   const [detailedMeal, setDetailedMeal] = useState(meal);
   const [loadingDetails, setLoadingDetails] = useState(false);
 
-  // If the passed meal doesn't have details, fetch them
   useEffect(() => {
     if (!meal.strInstructions) {
       const fetchMealDetails = async () => {
@@ -88,8 +87,6 @@ const MealDetails = ({
               </svg>
             </button>
 
-            {/* Favorite button */}
-
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => toggleFavorite(detailedMeal)}
@@ -117,7 +114,6 @@ const MealDetails = ({
               </motion.div>
             </motion.button>
 
-            {/* Image section */}
             <div className="relative h-72 w-full overflow-hidden">
               {loadingDetails ? (
                 <div className="w-full h-full bg-gradient-to-r from-gray to-gray animate-pulse"></div>
@@ -191,7 +187,7 @@ const MealDetails = ({
                       )}
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-12">
+                    <div className="grid md:grid-cols-2 ">
                       {/* Ingredients */}
                       <div className="bg-gray-very-light p-8 rounded-xl">
                         <motion.h3
@@ -285,6 +281,38 @@ const MealDetails = ({
                                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
                               </svg>
                               Watch on YouTube
+                            </motion.a>
+                          </motion.div>
+                        )}
+                        {detailedMeal.strSource && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.7 }}
+                            className="mt-4"
+                          >
+                            <motion.a
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              href={detailedMeal.strSource}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-3 bg-[#1E40AF] hover:bg-[#1E3A8A] text-white px-8.5 py-3 rounded-lg transition-all shadow-md hover:shadow-lg font-medium"
+                            >
+                              <svg
+                                className="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                                />
+                              </svg>
+                              View Full Recipe
                             </motion.a>
                           </motion.div>
                         )}
